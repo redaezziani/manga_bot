@@ -35,6 +35,7 @@ const downloadManga = async () => {
     const mangaNameWithoutChapterStr=mangaNameWithoutChapter.join(" ");
     const mangaNameWithPlus=replaceAll(mangaNameWithoutChapterStr);
     const mangaDetails=await getDetails(mangaNameWithPlus);
+    // last test 
 }
 
 downloadManga();
