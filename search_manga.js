@@ -35,7 +35,15 @@ async function searchManga(mangaName) {
         const mangaList = await page.evaluate(() => {
           const mangaElements = Array.from(document.querySelectorAll('h3.h4 > a'));
           console.log(mangaElements.length);
-          return mangaElements.map((manga) => manga.textContent);
+          //lets get the manga last chapter
+          const mangaLastChapterElements = Array.from(document.querySelectorAll('span.chapter a'));
+          const mangaLastChapter = mangaLastChapterElements.map((chapter) => chapter.textContent);
+          const manga={
+            name : mangaElements.map((manga) => manga.textContent),
+            lastChapter : mangaLastChapter
+          }
+          return manga;
+          
         });
           spiner.stop();
   

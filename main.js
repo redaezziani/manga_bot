@@ -19,8 +19,14 @@ const downloadManga = async () => {
           message:'Enter the name of the manga you want to download:'
         }
       ])
-    const mangaList=await searchManga(name);
+    const data=await searchManga(name);
 
+    const mangaName=data.name;
+    const lastChapter=data.lastChapter;
+    const mangaList=[];
+    for(let i=0;i<mangaName.length;i++){
+        mangaList.push(`${mangaName[i]} ${chalk.green(lastChapter[i])}`);
+    }
     const {manga}=await inquirer.prompt([
         {
           type:'list',
