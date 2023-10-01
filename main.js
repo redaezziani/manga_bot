@@ -5,7 +5,6 @@ import chalk from 'chalk';
 import inquirer from 'inquirer';
 import * as a from '@clack/prompts';
 const downloadManga = async () => {
-
     
     const {name}=await inquirer.prompt([
         {
