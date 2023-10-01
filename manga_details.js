@@ -22,13 +22,13 @@ const getDetails = async (manga) => {
     if (await page.evaluate(() => window.location.href.includes('captcha'))) {
       console.log('The page is protected by Cloudflare. You may need to solve a CAPTCHA manually.');
     } else {
-        // Continue scraping data
-        const mangaDetails = await page.evaluate(() => {
-            const mangaElements = Array.from(document.querySelectorAll('h1'));
-            const mangaDetails = mangaElements.map((manga) => manga.textContent);
-            return mangaDetails;
-        });
-        console.log(mangaDetails);
+      // Continue scraping data
+      const chapterDetails = await page.evaluate(() => {
+        const chapterElements = Array.from(document.querySelectorAll('a'));
+
+        return chapterElements.length;
+      });
+      console.log(chapterDetails);
     }
   } catch (error) {
     console.error('Failed to retrieve the page:', error);
