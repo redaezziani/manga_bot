@@ -35,7 +35,6 @@ async function searchManga(mangaName) {
         const mangaList = await page.evaluate(() => {
           const mangaElements = Array.from(document.querySelectorAll('h3.h4 > a'));
           console.log(mangaElements.length);
-          //lets get the manga last chapter
           const mangaLastChapterElements = Array.from(document.querySelectorAll('span.chapter a'));
           const mangaLastChapter = mangaLastChapterElements.map((chapter) => chapter.textContent);
           const manga={

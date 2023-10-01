@@ -35,7 +35,12 @@ const downloadManga = async () => {
           choices:mangaList
         }
     ])
-    getDetails(manga);
+    //lets take just the name of the manga without the last chapter
+    const mangaNameWithoutChapter=manga.split(" ");
+    mangaNameWithoutChapter.pop();
+    const mangaNameWithoutChapterStr=mangaNameWithoutChapter.join(" ");
+    const mangaNameWithPlus=replaceAll(mangaNameWithoutChapterStr);
+    const mangaDetails=await getDetails(mangaNameWithPlus);
 }
 
 downloadManga();
