@@ -1,9 +1,13 @@
 import puppeteer from "puppeteer";
-import { replaceAll } from "./utils.js";
+import {replaceSpaceWithDatch} from "./utils.js";
 
-const getDetails = async (manga) => {
-  manga = replaceAll(manga);
-  const url = `https://mangarabic.com/manga/${manga}/`;
+
+
+
+
+const getChapter = async (manga,chapterNumber) => {
+  manga = replaceSpaceWithDatch(manga);
+  const url = `https://mangarabic.com/manga/${manga}/${chapterNumber}/`;
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
   const headers = {
@@ -24,9 +28,9 @@ const getDetails = async (manga) => {
     } else {
       // Continue scraping data
       const chapterDetails = await page.evaluate(() => {
-        const chapterElements = Array.from(document.querySelectorAll('a'));
+        const chapterTitle= document.querySelector('h1.chapter-heading').textContent;
 
-        return chapterElements.length;
+        return chapterTitle;
       });
       console.log(chapterDetails);
     }
@@ -37,4 +41,6 @@ const getDetails = async (manga) => {
   }
 };
 
-export { getDetails };
+
+getChapter("one piece",999)
+export { getChapter };

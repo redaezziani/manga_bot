@@ -1,6 +1,6 @@
 
 import {searchManga} from './search_manga.js';
-import {getDetails} from './manga_details.js';
+import {getChapter} from './manga_chapter.js';
 import chalk from 'chalk';
 import inquirer from 'inquirer';
 import * as a from '@clack/prompts';
@@ -34,8 +34,9 @@ const downloadManga = async () => {
     mangaNameWithoutChapter.pop();
     const mangaNameWithoutChapterStr=mangaNameWithoutChapter.join(" ");
     const mangaNameWithPlus=replaceAll(mangaNameWithoutChapterStr);
-    const mangaDetails=await getDetails(mangaNameWithPlus);
-    // last test 
+    const manga_chapter=await getChapter(mangaNameWithPlus);
+
+    console.log(manga_chapter);
 }
 
 downloadManga();

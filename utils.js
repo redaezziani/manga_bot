@@ -6,6 +6,12 @@ const replaceAll = (mangaName) => {
     return mangaNameWithPlus;
 };
 
+const replaceSpaceWithDatch=(manga)=>{
+    let mangaNameArr = manga.split(" ");
+    let mangaNameWithDatch = mangaNameArr.join("-");
+    return mangaNameWithDatch;
+}
 
 
-export { replaceAll };
+
+export { replaceAll, replaceSpaceWithDatch };
