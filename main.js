@@ -31,10 +31,10 @@ const downloadManga = async () => {
     ])
     //lets take just the name of the manga without the last chapter
     const mangaNameWithoutChapter=manga.split(" ");
-    mangaNameWithoutChapter.pop();
-    const mangaNameWithoutChapterStr=mangaNameWithoutChapter.join(" ");
-    const mangaNameWithPlus=replaceAll(mangaNameWithoutChapterStr);
-    const manga_chapter=await getChapter(mangaNameWithPlus);
+    mangaNameWithoutChapter.pop();// remove the last element which is the chapter
+
+    const mangaNameWithoutChapterStr=mangaNameWithoutChapter.join(" ");//convert the array to string
+    const manga_chapter=await getChapter(mangaNameWithoutChapterStr,2);
 
     console.log(manga_chapter);
 }
