@@ -1,9 +1,11 @@
 
 import {searchManga} from './search_manga.js';
 import {getChapter} from './manga_chapter.js';
+import {downloadImages} from './download_images.js';
 import chalk from 'chalk';
 import inquirer from 'inquirer';
 import * as a from '@clack/prompts';
+import fs from 'fs';
 const downloadManga = async () => {
     
     const {name}=await inquirer.prompt([
@@ -34,9 +36,12 @@ const downloadManga = async () => {
     mangaNameWithoutChapter.pop();// remove the last element which is the chapter
 
     const mangaNameWithoutChapterStr=mangaNameWithoutChapter.join(" ");//convert the array to string
-    const manga_chapter=await getChapter(mangaNameWithoutChapterStr,2);
-
-    console.log(manga_chapter);
+    const manga_chapter=await getChapter(mangaNameWithoutChapterStr,1093);
+    const outputDirectory = './downloaded_images'; // Change to your desired output directory
+if (!fs.existsSync(outputDirectory)) {
+  fs.mkdirSync(outputDirectory);
+}
+downloadImages(mangaList, outputDirectory);
 }
 
 downloadManga();
